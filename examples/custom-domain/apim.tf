@@ -4,8 +4,8 @@ locals {
     resource_group_name = module.rg.groups.demo.name
     location            = module.rg.groups.demo.location
     sku_name            = "Developer_1"
-    publisher_name      = "CloudNation"
-    publisher_email     = "testuser@cloudnation.nl"
+    publisher_name      = "codectl"
+    publisher_email     = "testuser@codectl.nl"
 
     identity = {
       type         = "SystemAssigned, UserAssigned"

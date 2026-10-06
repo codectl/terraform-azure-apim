@@ -1,33 +1,42 @@
 module "naming" {
-  source  = "cloudnationhq/naming/azure"
-  version = "~> 0.26"
+  source  = "codectl/naming/azure"
+  version = "~> 0.1"
 
   suffix = ["demo", "dev"]
 }
 
+module "regions" {
+  source  = "codectl/locations/azure"
+  version = "~> 1.0"
+
+  location = {
+    primary = "westeurope"
+  }
+}
+
 module "rg" {
-  source  = "cloudnationhq/rg/azure"
-  version = "~> 3.0"
+  source  = "codectl/rg/azure"
+  version = "~> 1.0"
 
   groups = {
     demo = {
       name     = module.naming.resource_group.name_unique
-      location = "westeurope"
+      location = module.regions.location.primary.name
     }
   }
 }
 
 module "apim" {
-  source  = "cloudnationhq/apim/azure"
-  version = "~> 4.0"
+  source  = "codectl/apim/azure"
+  version = "~> 1.0"
 
   service = {
     name                = module.naming.api_management.name_unique
     resource_group_name = module.rg.groups.demo.name
     location            = module.rg.groups.demo.location
     sku_name            = "Developer_1"
-    publisher_name      = "CloudNation"
-    publisher_email     = "testuser@cloudnation.nl"
+    publisher_name      = "codectl"
+    publisher_email     = "testuser@codectl.nl"
 
     products = {
       starter = {
@@ -40,7 +49,7 @@ module "apim" {
 
     users = {
       demo = {
-        email      = "demouser@cloudnation.nl"
+        email      = "demouser@codectl.nl"
         first_name = "Demo"
         last_name  = "User"
         user_id    = "demo-user-1"
