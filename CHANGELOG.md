@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2026-10-06)
+
+
+### Features
+
+* add initial resources ([af6c2ca](https://github.com/codectl/terraform-azure-apim/commit/af6c2ca0003b22ceb08425d8148d190216319b7c))
+* add initial resources ([434d514](https://github.com/codectl/terraform-azure-apim/commit/434d5142dbb03ac3d66fb0ce61f1446a251db2e0))
+
 ## [4.0.0](https://github.com/CloudNationHQ/terraform-azure-apim/compare/v3.2.0...v4.0.0) (2026-10-06)
 
 
